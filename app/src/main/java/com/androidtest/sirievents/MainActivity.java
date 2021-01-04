@@ -2,24 +2,31 @@ package com.androidtest.sirievents;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebResourceRequest;
+
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import com.androidtest.sirievents.databinding.ActivityMainBinding;
-import com.androidtest.sirievents.databinding.ActivitySplashBinding;
+
+
 
 import static android.content.ContentValues.TAG;
 
 public class MainActivity extends Activity {
+    boolean doubleBackToExitPressedOnce = false;
     ActivityMainBinding binding;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +39,19 @@ public class MainActivity extends Activity {
                 super.onPageFinished(view, url);
                 binding.progressBar.setVisibility(View.GONE);
                 binding.webView.setVisibility(View.VISIBLE);
+
+            }
+
+            @Override
+            public void onLoadResource(WebView view, String url) {
+
+                try {
+                    binding.webView.loadUrl("javascript:(function() { " +
+                            "var head = document.getElementsByClassName('')[0].style.display='none'; " +
+                            "})()");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             }
 
@@ -65,8 +85,27 @@ public class MainActivity extends Activity {
         if (binding.webView.canGoBack()) {
             binding.webView.goBack();
         } else {
-            super.onBackPressed();
+           // super.onBackPressed();
+            doubleTap();
         }
 
+    }
+
+    private void doubleTap(){
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 }
