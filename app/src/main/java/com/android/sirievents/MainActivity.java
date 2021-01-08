@@ -1,6 +1,4 @@
-package com.androidtest.sirievents;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.android.sirievents;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -11,14 +9,14 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
-import android.webkit.WebSettings;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-import com.androidtest.sirievents.databinding.ActivityMainBinding;
 
-
+import com.android.sirievents.databinding.ActivityMainBinding;
 
 import static android.content.ContentValues.TAG;
 
@@ -33,6 +31,7 @@ public class MainActivity extends Activity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+       // CookieManager.getInstance().setAcceptThirdPartyCookies(binding.webView, false);
         binding.webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
@@ -78,6 +77,7 @@ public class MainActivity extends Activity {
         });
         binding.webView.getSettings().setJavaScriptEnabled(true);
         binding.webView.loadUrl("https://siri-management.business.site/");
+
     }
 
     @Override

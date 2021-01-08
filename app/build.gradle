@@ -3,6 +3,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('E:\\Android projects\\SiriEvents\\app\\jks\\sirievents.jks')
+            storePassword 'sirievents'
+            keyAlias 'sirievents'
+            keyPassword 'sirievents'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
@@ -14,6 +22,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release
     }
 
     buildFeatures {
@@ -23,7 +32,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
