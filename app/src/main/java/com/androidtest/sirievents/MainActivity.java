@@ -9,14 +9,12 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 
-import com.android.sirievents.databinding.ActivityMainBinding;
+import com.androidtest.sirievents.databinding.ActivityMainBinding;
 
 import static android.content.ContentValues.TAG;
 
