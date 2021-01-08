@@ -1,4 +1,4 @@
-package com.android.sirievents;
+package com.androidtest.sirievents;
 
 import android.app.Activity;
 import android.content.Intent;

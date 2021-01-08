@@ -13,14 +13,14 @@
         android:theme="@style/Theme.SiriEvents"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup">
-        <activity android:name="com.android.sirievents.SplashActivity">
+        <activity android:name="com.android.sirievents.com.androidtest.sirievents.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.android.sirievents.MainActivity"/>
+        <activity android:name="com.android.sirievents.com.androidtest.sirievents.MainActivity"/>
     </application>
 
 </manifest>
